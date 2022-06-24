@@ -18,11 +18,12 @@ class ViewController: UIViewController {
 
     
     @IBAction func teclaPresionada(_ sender: UIButton) {
-        playSound()
+        print(sender.currentTitle ?? "No title")
+        playSound(with: sender.currentTitle ?? "C")
     }
     
-    private func playSound() {
-        guard let url = Bundle.main.url(forResource: "C", withExtension: "wav") else {return}
+    private func playSound(with soundName: String) {
+        guard let url = Bundle.main.url(forResource: soundName, withExtension: "wav") else {return}
         player = try? AVAudioPlayer(contentsOf: url)
         player?.play()
     }
